@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding SMPN 1 Kertosono - Beri Saran, Kritik, & Ide Materi Coding 💻</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4 overflow-x-hidden">
+
+  <!-- STEP 1: LANDING PAGE -->
+  <div id="welcomeCard" class="animate-fade-in max-w-lg w-full bg-slate-800/95 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-center border border-slate-700/80">
+    <div class="mb-6 inline-block p-4 bg-indigo-600/20 rounded-full text-4xl animate-float">
+      💻
+    </div>
+    <div class="mb-3">
+      <span class="inline-block px-3 py-1 bg-indigo-600/30 text-indigo-400 border border-indigo-500/30 rounded-full text-xs font-semibold uppercase tracking-wider">
+        🏫 Coding SMPN 1 Kertosono
+      </span>
+    </div>
+    <h1 class="text-2xl md:text-3xl font-bold mb-3 tracking-wide">
+      Beri Saran, Kritik, & Ide Materi Coding 🚀
+    </h1>
+    <p class="text-slate-400 mb-8 text-sm md:text-base leading-relaxed">
+      Silahkan berikan masukan, kritik, maupun ide materi Anda untuk membantu pengembangan kegiatan <strong class="text-indigo-400">Coding SMPN 1 Kertosono</strong>. ✨
+    </p>
+    <button onclick="goToForm()" class="w-full py-3.5 px-6 bg-indigo-600 hover:bg-indigo-500 active:scale-95 font-semibold rounded-xl shadow-lg shadow-indigo-600/30 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2">
+      <span>Mulai Sekarang</span> 🚀
+    </button>
+  </div>
+
+  <!-- STEP 2: FORM INPUT -->
+  <div id="formCard" class="animate-fade-in max-w-lg w-full bg-slate-800/95 backdrop-blur-md rounded-2xl shadow-2xl p-8 border border-slate-700/80 hidden">
+    <div class="text-center mb-6">
+      <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase bg-indigo-600/20 px-3 py-1 rounded-full border border-indigo-500/30">
+        🏫 Coding SMPN 1 Kertosono
+      </span>
+      <h2 class="text-xl md:text-2xl font-bold tracking-wide flex items-center justify-center gap-2 mt-3">
+        <span>📝</span> Form Beri Saran, Kritik, & Ide Materi Coding
+      </h2>
+    </div>
+
+    <form id="feedbackForm" onsubmit="submitForm(event)" class="space-y-4">
+      
+      <!-- Input Nama & Pilihan Kelas (Dropdown 7A-9I) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+            <span>👤</span> Nama
+          </label>
+          <input type="text" id="namaInput" placeholder="Nama lengkap..." class="w-full px-3.5 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-slate-500 text-sm transition">
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+            <span>🏫</span> Kelas
+          </label>
+          <select id="kelasSelect" class="w-full px-3.5 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white text-sm transition cursor-pointer">
+            <option value="" disabled selected>Pilih Kelas...</option>
+            <!-- Kelas 7 -->
+            <optgroup label="Kelas 7">
+              <option value="7A">7A</option><option value="7B">7B</option><option value="7C">7C</option><option value="7D">7D</option><option value="7E">7E</option><option value="7F">7F</option><option value="7G">7G</option><option value="7H">7H</option><option value="7I">7I</option>
+            </optgroup>
+            <!-- Kelas 8 -->
+            <optgroup label="Kelas 8">
+              <option value="8A">8A</option><option value="8B">8B</option><option value="8C">8C</option><option value="8D">8D</option><option value="8E">8E</option><option value="8F">8F</option><option value="8G">8G</option><option value="8H">8H</option><option value="8I">8I</option>
+            </optgroup>
+            <!-- Kelas 9 -->
+            <optgroup label="Kelas 9">
+              <option value="9A">9A</option><option value="9B">9B</option><option value="9C">9C</option><option value="9D">9D</option><option value="9E">9E</option><option value="9F">9F</option><option value="9G">9G</option><option value="9H">9H</option><option value="9I">9I</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <!-- Opsi Anonim -->
+      <div class="flex items-center gap-2 select-none w-fit pt-1">
+        <input type="checkbox" id="anonimCheck" onchange="toggleAnonim()" class="w-4 h-4 text-indigo-600 rounded bg-slate-900 border-slate-700 focus:ring-indigo-500 cursor-pointer transition">
+        <label for="anonimCheck" class="text-sm text-slate-400 hover:text-slate-200 cursor-pointer transition flex items-center gap-1.5">
+          <span>🥷</span> Kirim sebagai Anonim (Sembunyikan Nama & Kelas)
+        </label>
+      </div>
+
+      <!-- Input Teks (Wajib) -->
+      <div>
+        <label class="block text-sm font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+          <span>✍️</span> Saran, Kritik, atau Ide Materi Coding <span class="text-red-400">*</span>
+        </label>
+        <textarea id="pesanInput" required rows="4" placeholder="Tuliskan saran, kritik, atau ide materi coding di sini..." class="w-full px-3.5 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-slate-500 text-sm transition"></textarea>
+      </div>
+
+      <!-- Input File Lebih dari 1 (Multiple Files) -->
+      <div>
+        <label class="block text-sm font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+          <span>📁</span> Lampiran File <span class="text-slate-500 text-xs">(Bisa pilih lebih dari 1 file)</span>
+        </label>
+        <input type="file" id="fileInput" multiple class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-indigo-600/20 file:text-indigo-400 hover:file:bg-indigo-600/30 file:transition cursor-pointer">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="w-full py-3.5 px-6 bg-indigo-600 hover:bg-indigo-500 active:scale-95 font-semibold rounded-xl shadow-lg shadow-indigo-600/30 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 mt-2">
+        <span>Kirim Masukan</span> 📤
+      </button>
+    </form>
+  </div>
+
+  <!-- STEP 3: THANK YOU CARD -->
+  <div id="thankYouCard" class="animate-fade-in max-w-lg w-full bg-slate-800/95 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-center border border-slate-700/80 hidden">
+    <div class="mb-6 inline-block p-4 bg-emerald-600/20 rounded-full text-4xl animate-float">
+      🎉
+    </div>
+    <div class="mb-3">
+      <span class="inline-block px-3 py-1 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-full text-xs font-semibold uppercase tracking-wider">
+        🏫 Coding SMPN 1 Kertosono
+      </span>
+    </div>
+    <h2 class="text-xl md:text-2xl font-bold mb-4">
+      Terimakasih atas Saran 🌟, Kritik 🔍, maupun Ide Materi Coding 💡 yang diberikan!
+    </h2>
+    <p class="text-slate-400 mb-6">Masukan Anda telah berhasil terkirim kepada tim <strong class="text-indigo-400">Coding SMPN 1 Kertosono</strong>. 👍</p>
+    <button onclick="resetApp()" class="px-6 py-2.5 bg-slate-700 hover:bg-slate-600 active:scale-95 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer inline-flex items-center gap-2">
+      <span>🔄 Kirim Masukan Lain</span>
+    </button>
+  </div>
+
+  <script>
+    function goToForm() {
+      switchCard('welcomeCard', 'formCard');
+    }
+
+    function toggleAnonim() {
+      const checkbox = document.getElementById('anonimCheck');
+      const namaInput = document.getElementById('namaInput');
+      const kelasSelect = document.getElementById('kelasSelect');
+
+      if (checkbox.checked) {
+        namaInput.value = '';
+        kelasSelect.value = '';
+        namaInput.disabled = true;
+        kelasSelect.disabled = true;
+        namaInput.placeholder = '🥷 Anonim';
+        namaInput.classList.add('opacity-40', 'cursor-not-allowed');
+        kelasSelect.classList.add('opacity-40', 'cursor-not-allowed');
+      } else {
+        namaInput.disabled = false;
+        kelasSelect.disabled = false;
+        namaInput.placeholder = 'Nama lengkap...';
+        namaInput.classList.remove('opacity-40', 'cursor-not-allowed');
+        kelasSelect.classList.remove('opacity-40', 'cursor-not-allowed');
+      }
+    }
+
+    async function submitForm(e) {
+      e.preventDefault();
+      
+      const isAnonim = document.getElementById('anonimCheck').checked;
+      const nama = isAnonim ? 'Anonim (🥷)' : (document.getElementById('namaInput').value.trim() || 'Anonim (🥷)');
+      const kelas = isAnonim ? '-' : (document.getElementById('kelasSelect').value || '-');
+      const pesan = document.getElementById('pesanInput').value;
+      const fileInputElement = document.getElementById('fileInput');
+
+      let filesData = [];
+      if (fileInputElement.files.length > 0) {
+        for (let i = 0; i < fileInputElement.files.length; i++) {
+          const file = fileInputElement.files[i];
+          const base64 = await convertFileToBase64(file);
+          filesData.push({
+            name: file.name,
+            type: file.type,
+            url: base64
+          });
+        }
+      }
+
+      const newSubmission = {
+        id: Date.now(),
+        nama: nama,
+        kelas: kelas,
+        pesan: pesan,
+        files: filesData,
+        waktu: new Date().toLocaleString('id-ID')
+      };
+
+      const submissions = JSON.parse(localStorage.getItem('web_submissions') || '[]');
+      submissions.unshift(newSubmission);
+      localStorage.setItem('web_submissions', JSON.stringify(submissions));
+
+      switchCard('formCard', 'thankYouCard');
+    }
+
+    function switchCard(fromId, toId) {
+      document.getElementById(fromId).classList.add('hidden');
+      document.getElementById(toId).classList.remove('hidden');
+    }
+
+    function convertFileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+      });
+    }
+
+    function resetApp() {
+      document.getElementById('feedbackForm').reset();
+      const checkbox = document.getElementById('anonimCheck');
+      checkbox.checked = false;
+      toggleAnonim();
+      switchCard('thankYouCard', 'welcomeCard');
+    }
+  </script>
+</body>
+</html>
